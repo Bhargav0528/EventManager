@@ -13,14 +13,15 @@
         android:id="@+id/name"/>
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:id="@+id/photo"/>
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/signout"
-        android:text="LogOut"/>
+        android:text="Settings"
+        android:id="@+id/settings"/>
 
 
 </LinearLayout>

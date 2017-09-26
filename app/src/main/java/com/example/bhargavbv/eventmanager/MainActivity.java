@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     private DatabaseReference ref;
 
     private GoogleApiClient mGoogleApiClient;
-    private Button signout;
+    private Button signout,settings;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseUser user;
@@ -58,7 +58,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
+        settings = (Button)findViewById(R.id.settings);
+        settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this,SettingsActivity.class));
+            }
+        });
 
         name = (TextView)findViewById(R.id.name);
         photo = (ImageView)findViewById(R.id.photo);
@@ -121,9 +127,9 @@ public class MainActivity extends AppCompatActivity {
                 .addApi(Auth.GOOGLE_SIGN_IN_API,gso)
                 .build();
 
-        signout = (Button)findViewById(R.id.signout);
+        //signout = (Button)findViewById(R.id.signout);
 
-        signout.setOnClickListener(new View.OnClickListener() {
+        /*signout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mAuth.signOut();
@@ -136,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
                             }
                         });
             }
-        });
+        });*/
     }
 
     public static Bitmap getBitmapFromURL(String src) {

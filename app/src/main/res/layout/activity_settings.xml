@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/background"
+
+    tools:context=".SettingsActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:paddingLeft="10dp"
+            android:layout_width="70dp"
+            android:layout_height="75dp"
+            android:src="@drawable/signout"/>
+        <TextView
+            android:id="@+id/signout"
+            android:paddingLeft="25dp"
+            android:paddingBottom="20dp"
+            android:paddingTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Sign out"
+            android:textColor="#FFC300"
+            android:textSize="30sp"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:paddingLeft="10dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/about"
+            android:color="#FFC300" />
+        <TextView
+            android:paddingBottom="20dp"
+            android:paddingLeft="25dp"
+            android:paddingTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="About"
+            android:textColor="#FFC300"
+            android:textSize="30sp"
+
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:paddingLeft="10dp"
+            android:layout_width="70dp"
+            android:layout_height="75dp"
+            android:src="@drawable/editprof"/>
+        <TextView
+            android:paddingBottom="20dp"
+            android:paddingTop="20dp"
+            android:paddingLeft="25dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Edit profile"
+            android:textColor="#FFC300"
+            android:textSize="30sp"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:paddingLeft="10dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/contactus"/>
+        <TextView
+            android:paddingBottom="20dp"
+            android:paddingTop="20dp"
+            android:paddingLeft="25dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Contact us"
+            android:textColor="#FFC300"
+            android:textSize="30sp"
+            />
+    </LinearLayout>
+</LinearLayout>

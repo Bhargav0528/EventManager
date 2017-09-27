@@ -12,26 +12,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingLeft="120dp"
+        android:paddingLeft="70dp"
         android:paddingTop="170dp">
 
-        <EditText
-            android:id="@+id/usernametext"
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="text"
-            android:text="Username"
-            android:textColor="#FFC300"
-            android:textSize="25sp"
-            />
-        <EditText
-            android:id="@+id/password"
-            android:inputType="textPassword"
-            android:text="password"
-            android:textColor="#FFC300"
-            android:textSize="25sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:text="EVENT MANAGER"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:textColor="#ffffff"/>
 
     </LinearLayout>
     <LinearLayout
@@ -40,30 +30,13 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/user"
         android:orientation="vertical">
-        <TextView
-            android:id="@+id/text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Sign in"
-            android:textColor="#FFC300"
-            android:paddingLeft="150dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="20dp"
-            android:textSize="25sp"/>
-        <TextView
-            android:id="@+id/text2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Register"
-            android:textColor="#FFC300"
-            android:textSize="17.5sp"
-            android:paddingLeft="154dp"
-            android:paddingTop="20dp"
-            android:paddingBottom="20dp"/>
+
     </LinearLayout>
 
     <com.google.android.gms.common.SignInButton
         android:id="@+id/sign_in_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="350dp"/>
 </RelativeLayout>

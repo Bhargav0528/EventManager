@@ -23,5 +23,4 @@
         android:text="Settings"
         android:id="@+id/settings"/>
 
-
 </LinearLayout>

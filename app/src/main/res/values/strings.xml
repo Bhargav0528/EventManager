@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">EventManager</string>
+    <string name="facebook_app_id">1968338016746014</string>
+    <string name="fb_login_protocol_scheme">fb1968338016746014</string>
 </resources>

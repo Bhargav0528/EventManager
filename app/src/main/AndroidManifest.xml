@@ -35,9 +35,15 @@
         </activity>
         <activity android:name=".SettingsActivity" />
         <activity
-            android:name=".ComboProviders_Activity"
-            android:label="@string/title_activity_combo_providers_"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:name=".ComboProvidersActivity"
+            android:label="@string/title_activity_combo_providers"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

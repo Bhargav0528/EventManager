@@ -98,7 +98,7 @@ public class LoginActivity extends AppCompatActivity {
                 Log.d(TAG, "facebook:onSuccess:" + loginResult);
                 user_id = loginResult.getAccessToken().getUserId();
                 acc = loginResult.getAccessToken();
-                Log.i(TAG,user_id);
+                Log.i(TAG,user_id+""+acc);
                 handleFacebookAccessToken(loginResult.getAccessToken());
             }
 
@@ -276,7 +276,7 @@ public class LoginActivity extends AppCompatActivity {
                             //asdasd
                             ref.child("users").child(uid).child("photo").setValue(x);
 
-                            /*GraphRequest request = GraphRequest.newMeRequest(
+                            GraphRequest request = GraphRequest.newMeRequest(
                                     acc,
                                     new GraphRequest.GraphJSONObjectCallback() {
                                         @Override
@@ -299,8 +299,7 @@ public class LoginActivity extends AppCompatActivity {
                             request.setParameters(parameters);
                             request.executeAsync();
 
-                            AccessToken token = AccessToken.getCurrentAccessToken();
-                            GraphRequest graphRequest = GraphRequest.newMeRequest(token, new GraphRequest.GraphJSONObjectCallback() {
+                            GraphRequest graphRequest = GraphRequest.newMeRequest(acc, new GraphRequest.GraphJSONObjectCallback() {
                                 @Override
                                 public void onCompleted(JSONObject jsonObject, GraphResponse graphResponse) {
                                     try {
@@ -319,7 +318,7 @@ public class LoginActivity extends AppCompatActivity {
                             graphRequest.setParameters(param);
                             graphRequest.executeAsync();
 
-*/
+
 
                         } else {
                             // If sign in fails, display a message to the user.
@@ -335,6 +334,29 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
 
+    }
+    private void myNewGraphReq(String friendlistId) {
+        final String graphPath = "/"+friendlistId+"/members/";
+        AccessToken token = AccessToken.getCurrentAccessToken();
+        GraphRequest request = new GraphRequest(token, graphPath, null, HttpMethod.GET, new GraphRequest.Callback() {
+            @Override
+            public void onCompleted(GraphResponse graphResponse) {
+                JSONObject object = graphResponse.getJSONObject();
+                try {
+                    JSONArray arrayOfUsersInFriendList= object.getJSONArray("data");
+                /* Do something with the user list */
+                /* ex: get first user in list, "name" */
+                    JSONObject user = arrayOfUsersInFriendList.getJSONObject(0);
+                    String usersName = user.getString("name");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        Bundle param = new Bundle();
+        param.putString("fields", "name");
+        request.setParameters(param);
+        request.executeAsync();
     }
 
 

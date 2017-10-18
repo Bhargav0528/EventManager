@@ -21,6 +21,9 @@ import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
+import com.facebook.HttpMethod;
 import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
@@ -42,6 +45,10 @@ import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -54,13 +61,14 @@ public class LoginActivity extends AppCompatActivity {
     private DatabaseReference ref;
     private FirebaseUser user;
 
+    AccessToken acc;
     private String idToken;
     private String name, email;
     private String photo;
     private Uri photoUri;
     URL imgUrl;
 
-    private String user_id;
+    private String user_id,user_token;
 
     private CallbackManager mCallbackManager;
 
@@ -83,12 +91,13 @@ public class LoginActivity extends AppCompatActivity {
         mCallbackManager = CallbackManager.Factory.create();
 
         LoginButton fblogin = (LoginButton)findViewById(R.id.button_facebook_login);
-        fblogin.setReadPermissions("email", "public_profile");
+        fblogin.setReadPermissions("email", "public_profile", "user_friends","user_birthday");
         fblogin.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
                 Log.d(TAG, "facebook:onSuccess:" + loginResult);
                 user_id = loginResult.getAccessToken().getUserId();
+                acc = loginResult.getAccessToken();
                 Log.i(TAG,user_id);
                 handleFacebookAccessToken(loginResult.getAccessToken());
             }
@@ -267,6 +276,50 @@ public class LoginActivity extends AppCompatActivity {
                             //asdasd
                             ref.child("users").child(uid).child("photo").setValue(x);
 
+                            /*GraphRequest request = GraphRequest.newMeRequest(
+                                    acc,
+                                    new GraphRequest.GraphJSONObjectCallback() {
+                                        @Override
+                                        public void onCompleted(JSONObject object, GraphResponse response) {
+                                            Log.v("LoginActivity", response.toString());
+
+                                            // Application code
+                                            try {
+                                                String email = object.getString("email");
+                                                String birthday = object.getString("birthday"); // 01/31/1980 format
+                                                Log.i(TAG, email + "dasdasda"+birthday+"amele");
+                                            } catch (JSONException e) {
+                                                e.printStackTrace();
+                                            }
+
+                                        }
+                                    });
+                            Bundle parameters = new Bundle();
+                            parameters.putString("fields", "id,name,email,gender,birthday");
+                            request.setParameters(parameters);
+                            request.executeAsync();
+
+                            AccessToken token = AccessToken.getCurrentAccessToken();
+                            GraphRequest graphRequest = GraphRequest.newMeRequest(token, new GraphRequest.GraphJSONObjectCallback() {
+                                @Override
+                                public void onCompleted(JSONObject jsonObject, GraphResponse graphResponse) {
+                                    try {
+                                        JSONArray jsonArrayFriends = jsonObject.getJSONObject("friendlist").getJSONArray("data");
+                                        JSONObject friendlistObject = jsonArrayFriends.getJSONObject(0);
+                                        String friendListID = friendlistObject.getString("id");
+                                        myNewGraphReq(friendListID);
+
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            });
+                            Bundle param = new Bundle();
+                            param.putString("fields", "friendlist");
+                            graphRequest.setParameters(param);
+                            graphRequest.executeAsync();
+
+*/
 
                         } else {
                             // If sign in fails, display a message to the user.
@@ -281,6 +334,7 @@ public class LoginActivity extends AppCompatActivity {
                         // [END_EXCLUDE]
                     }
                 });
+
     }
 
 

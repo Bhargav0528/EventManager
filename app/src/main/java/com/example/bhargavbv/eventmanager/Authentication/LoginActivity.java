@@ -41,6 +41,10 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+
 import static android.R.attr.name;
 
 public class LoginActivity extends AppCompatActivity {
@@ -54,6 +58,7 @@ public class LoginActivity extends AppCompatActivity {
     private String name, email;
     private String photo;
     private Uri photoUri;
+    URL imgUrl;
 
     private String user_id;
 
@@ -247,12 +252,20 @@ public class LoginActivity extends AppCompatActivity {
                             FirebaseUser user = mAuth.getCurrentUser();
                             assert user != null;
                             String uid = user.getUid();
-                            ref.child("users").child(uid).child("photo").setValue("http://graph.facebook.com/" + user_id + "/picture?type=large");
+
+                            try {
+                                imgUrl = new URL("https://graph.facebook.com/" + user_id + "/picture?type=large");
+                            } catch (MalformedURLException e) {
+                                e.printStackTrace();
+                            }
+
+
                             ref.child("users").child(uid).child("email").setValue(user.getEmail().toString());
                             ref.child("users").child(uid).child("name").setValue(user.getDisplayName().toString());
                             String x = user.getPhotoUrl().toString();
                             Log.i(TAG,x);
                             //asdasd
+                            ref.child("users").child(uid).child("photo").setValue(x);
 
 
                         } else {

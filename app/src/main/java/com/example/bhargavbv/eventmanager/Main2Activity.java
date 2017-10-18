@@ -28,14 +28,14 @@ public class Main2Activity extends AppCompatActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.but1:
+           /* case R.id.but1:
                 // User chose the "Settings" item, show the app settings UI...
                 return true;
 
             case R.id.but2:
                 // User chose the "Favorite" action, mark the current item
                 // as a favorite...
-                return true;
+                return true;*/
 
             default:
                 // If we got here, the user's action was not recognized.

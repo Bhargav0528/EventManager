@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/container_scroll_view"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/managerbg">
+
+    <GridLayout
+        android:id="@+id/container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:columnCount="16"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp">
+
+        <ImageView
+            android:id="@+id/wedding"
+            android:layout_height="160dp"
+            android:layout_width="160dp"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:layout_columnSpan="6"
+            android:src="@drawable/wedding" />
+
+        <Space
+            android:id="@+id/space1"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="16dp"
+            android:layout_column="6"
+            android:layout_columnSpan="4" />
+
+        <ImageView
+            android:id="@+id/birthday"
+            android:layout_marginTop="32dp"
+            android:layout_height="98dp"
+            android:layout_width="160dp"
+            android:layout_row="0"
+            android:layout_column="10"
+            android:layout_columnSpan="6"
+            android:background="@drawable/birthday" />
+
+
+
+        <ImageView
+            android:id="@+id/famevent"
+            android:layout_height="160dp"
+            android:layout_width="160dp"
+            android:layout_row="1"
+            android:layout_column="0"
+            android:layout_columnSpan="6"
+            android:src="@drawable/famevents" />
+
+        <Space
+            android:id="@+id/space2"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="16dp"
+            android:layout_column="6"
+            android:layout_columnSpan="4" />
+
+        <ImageView
+            android:id="@+id/seminar"
+            android:layout_marginTop="32dp"
+            android:layout_height="98dp"
+            android:layout_width="160dp"
+            android:layout_row="1"
+            android:layout_column="10"
+            android:layout_columnSpan="6"
+            android:background="@drawable/seminar" />
+
+
+
+
+        <ImageView
+            android:id="@+id/presscon"
+            android:layout_height="160dp"
+            android:layout_width="160dp"
+            android:layout_row="2"
+            android:layout_column="0"
+            android:layout_columnSpan="6"
+            android:src="@drawable/presscon" />
+
+        <Space
+            android:id="@+id/space3"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="16dp"
+            android:layout_column="6"
+            android:layout_columnSpan="4" />
+
+        <ImageView
+            android:id="@+id/teambuild"
+            android:layout_marginTop="32dp"
+            android:layout_height="98dp"
+            android:layout_width="160dp"
+            android:layout_row="2"
+            android:layout_column="10"
+            android:layout_columnSpan="6"
+            android:background="@drawable/teambuild" />
+
+    </GridLayout>
+
+</ScrollView>

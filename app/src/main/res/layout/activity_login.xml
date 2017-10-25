@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Authentication.LoginActivity"
-    android:background="@drawable/background">
+    android:background="@drawable/back_gradient">
     <LinearLayout
         android:id="@+id/user"
         android:layout_width="match_parent"
@@ -42,7 +42,19 @@
 
     <com.facebook.login.widget.LoginButton
         android:id="@+id/button_facebook_login"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/sign_in_button"
+        android:layout_alignStart="@+id/sign_in_button"
+        android:layout_marginTop="17dp" />
+
+    <TextView
+        android:id="@+id/service_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true" />
+        android:layout_below="@+id/button_facebook_login"
+        android:layout_centerHorizontal="true"
+        android:text="Serivice Provider ?"
+        android:layout_marginTop="15dp"
+        android:textAppearance="?android:textAppearanceLarge"/>
 </RelativeLayout>

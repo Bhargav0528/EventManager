@@ -1,48 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/back_gradient"
+    tools:context=".Authentication.ServiceProvidersInfo">
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#000000"
-    tools:context=".ProfileActivity_Service">
+    android:background="@drawable/back_gradient"
+    tools:context=".Authentication.ServiceProvidersInfo">
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="260dp"
-        android:src="@drawable/background"
+        android:id="@+id/imgview"
+        android:layout_width="218dp"
+        android:layout_height="216dp"
+        android:background="#ffffff"
+        android:layout_gravity="center_horizontal"
         />
-    <TextView
+    <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="COMPANY NAME"
         android:textColor="#ba000d"
-
+        android:id="@+id/compname"
         android:textAlignment="center"
         android:textSize="36dp"
         />
-    <TextView
+    <EditText
+        android:id="@+id/compdescp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="My company doesn't exsist because my company is non-exsistent."
+        android:text="Company Description"
         android:textSize="24dp"
         android:textColor="#bc5206"
         android:textAlignment="center"/>
-    <TextView
+    <EditText
+        android:id="@+id/servc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="My companies services don't exsist as well."
+        android:text="Services Proviided by the company"
         android:textSize="24dp"
         android:textColor="#bc5206"
         android:textAlignment="center"/>
 
-    <TextView
+    <EditText
+        android:id="@+id/loc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Location:"
         android:textSize="24dp"
         android:textColor="#bc5206"/>
-    <TextView
+    <EditText
+        android:id="@+id/contact"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Contact no."
@@ -74,4 +90,11 @@
         </LinearLayout>
     </HorizontalScrollView>
 
+    <Button
+        android:id="@+id/submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"/>
+
 </LinearLayout>
+</ScrollView>

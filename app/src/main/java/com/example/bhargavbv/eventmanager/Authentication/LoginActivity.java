@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bhargavbv.eventmanager.MainActivity;
@@ -53,6 +54,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import static android.R.attr.name;
+import static android.R.attr.start;
 
 public class LoginActivity extends AppCompatActivity {
     private GoogleApiClient mGoogleApiClient;
@@ -60,7 +62,7 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthListener;
     private DatabaseReference ref;
     private FirebaseUser user;
-
+    private TextView ServiceLogin;
     AccessToken acc;
     private String idToken;
     private String name, email;
@@ -87,6 +89,8 @@ public class LoginActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         ref = FirebaseDatabase.getInstance().getReference();
         user = mAuth.getCurrentUser();
+
+        ServiceLogin = (TextView)findViewById(R.id.service_login);
 
         mCallbackManager = CallbackManager.Factory.create();
 
@@ -159,6 +163,13 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 fbsignIn();
+            }
+        });
+
+        ServiceLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(LoginActivity.this,LoginService_Providers.class));
             }
         });
 

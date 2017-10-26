@@ -93,11 +93,18 @@ public class MainActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 ProfileInfo info = dataSnapshot.getValue(ProfileInfo.class);
-                name1 = info.getName();
-                photo1 = info.getPhoto();
-                Log.i(TAG,info.getName()+info.getPhoto());
-                photo.setImageBitmap(getBitmapFromURL(photo1));
-                name.setText(name1);
+                try {
+                    name1 = info.getName();
+                    photo1 = info.getPhoto();
+                    Log.i(TAG,info.getName()+info.getPhoto());
+                    photo.setImageBitmap(getBitmapFromURL(photo1));
+                    name.setText(name1);
+                }
+                catch (NullPointerException null1)
+                {
+                    Log.i(TAG,"No photo");
+                }
+
             }
 
             @Override

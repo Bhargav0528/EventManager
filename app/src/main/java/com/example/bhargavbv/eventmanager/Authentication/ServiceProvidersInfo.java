@@ -2,21 +2,27 @@ package com.example.bhargavbv.eventmanager.Authentication;
 
 import android.content.ContentResolver;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.text.SpannableString;
+import android.text.style.UnderlineSpan;
 import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bhargavbv.eventmanager.MainActivity;
 import com.example.bhargavbv.eventmanager.R;
+import com.example.bhargavbv.eventmanager.ServicesUpdateActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -37,15 +43,23 @@ public class ServiceProvidersInfo extends AppCompatActivity {
     ImageView imageView;
     boolean selected =  false;
     Uri imageUri;
+    TextView compdetail;
 
     Button submit;
 
-    EditText compname,descp,services,location,contact;
+    EditText compname,descp,location,contact;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_service_providers_info);
+
+        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+        toolbar.setTitle("|  MrManager");
+        toolbar.setTitleTextAppearance(this,R.style.MyTitleTextApperance);
+        toolbar.setTitleMarginStart(350);
+        toolbar.setTitleTextColor(Color.parseColor("#FFD740"));
+        setSupportActionBar(toolbar);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -56,7 +70,6 @@ public class ServiceProvidersInfo extends AppCompatActivity {
 
         compname = (EditText)findViewById(R.id.compname);
         descp = (EditText)findViewById(R.id.compdescp);
-        services = (EditText)findViewById(R.id.servc);
         location = (EditText)findViewById(R.id.loc);
         contact = (EditText)findViewById(R.id.contact);
 
@@ -64,15 +77,14 @@ public class ServiceProvidersInfo extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 openGallery();
-                uploadphoto();
             }
         });
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                detailsupdate();
-                startActivity(new Intent(ServiceProvidersInfo.this, MainActivity.class));
+                uploadphoto();
+                startActivity(new Intent(ServiceProvidersInfo.this, ServicesUpdateActivity.class));
             }
         });
 
@@ -104,6 +116,11 @@ public class ServiceProvidersInfo extends AppCompatActivity {
                     assert user!=null;
                     String uid = user.getUid();
                     dref.child("serviceProviders").child(uid).child("photo").setValue(taskSnapshot.getDownloadUrl().toString());
+                    //dref.child("serviceProviders").child(uid).child("photo").setValue(imageUri);
+                    dref.child("serviceProviders").child(uid).child("companyName").setValue(compname.getText().toString());
+                    dref.child("serviceProviders").child(uid).child("description").setValue(descp.getText().toString());
+                    dref.child("serviceProviders").child(uid).child("location").setValue(location.getText().toString());
+                    dref.child("serviceProviders").child(uid).child("contact").setValue(contact.getText().toString());
                 }
             })
                     .addOnFailureListener(new OnFailureListener() {
@@ -127,17 +144,6 @@ public class ServiceProvidersInfo extends AppCompatActivity {
         }
     }
 
-    public void detailsupdate(){
-        FirebaseUser user = mAuth.getCurrentUser();
-        assert user!=null;
-        String uid = user.getUid();
-        dref.child("serviceProviders").child(uid).child("photo").setValue(imageUri);
-        dref.child("serviceProviders").child(uid).child("companyName").setValue(compname.getText().toString());
-        dref.child("serviceProviders").child(uid).child("description").setValue(descp.getText().toString());
-        dref.child("serviceProviders").child(uid).child("services").setValue(services.getText().toString());
-        dref.child("serviceProviders").child(uid).child("location").setValue(location.getText().toString());
-        dref.child("serviceProviders").child(uid).child("contact").setValue(contact.getText().toString());
-    }
 
     private void openGallery(){
         Intent gallery = new Intent(Intent.ACTION_GET_CONTENT, MediaStore.Images.Media.INTERNAL_CONTENT_URI);

@@ -310,24 +310,6 @@ public class LoginActivity extends AppCompatActivity {
                             request.setParameters(parameters);
                             request.executeAsync();
 
-                            GraphRequest graphRequest = GraphRequest.newMeRequest(acc, new GraphRequest.GraphJSONObjectCallback() {
-                                @Override
-                                public void onCompleted(JSONObject jsonObject, GraphResponse graphResponse) {
-                                    try {
-                                        JSONArray jsonArrayFriends = jsonObject.getJSONObject("friendlist").getJSONArray("data");
-                                        JSONObject friendlistObject = jsonArrayFriends.getJSONObject(0);
-                                        String friendListID = friendlistObject.getString("id");
-                                        myNewGraphReq(friendListID);
-
-                                    } catch (JSONException e) {
-                                        e.printStackTrace();
-                                    }
-                                }
-                            });
-                            Bundle param = new Bundle();
-                            param.putString("fields", "friendlist");
-                            graphRequest.setParameters(param);
-                            graphRequest.executeAsync();
 
 
 

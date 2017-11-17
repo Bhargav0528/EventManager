@@ -4,9 +4,14 @@ package com.example.bhargavbv.eventmanager;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.StrictMode;
 import android.support.annotation.NonNull;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -49,28 +54,21 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseUser user;
-
-    String name1;
-    String photo1;
-
+    private PageAdapter pageadapter;
+    TabLayout tab;
+    ViewPager viewPager;
     private static final String TAG = "MainActivity";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        settings = (Button)findViewById(R.id.settings);
-        settings.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this,SettingsActivity.class));
-            }
-        });
 
-        name = (TextView)findViewById(R.id.name);
-        photo = (ImageView)findViewById(R.id.photo);
-
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
+        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+        toolbar.setTitle("|  MrManager");
+        toolbar.setTitleTextAppearance(this,R.style.MyTitleTextApperance);
+        toolbar.setTitleMarginStart(350);
+        toolbar.setTitleTextColor(Color.parseColor("#FFD740"));
+        setSupportActionBar(toolbar);
 
         mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
@@ -83,10 +81,38 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
-        ref = FirebaseDatabase.getInstance().getReference();
-        user = mAuth.getCurrentUser();
+        tab = (TabLayout)findViewById(R.id.tab);
+        tab.addTab(tab.newTab().setIcon(R.drawable.discover));
+        tab.addTab(tab.newTab().setIcon(R.drawable.cake));
+        tab.addTab(tab.newTab().setIcon(R.drawable.booked));
+        tab.addTab(tab.newTab().setIcon(R.drawable.user));
+        tab.setTabGravity(TabLayout.GRAVITY_FILL);
 
-        assert  user!=null;
+        viewPager = (ViewPager)findViewById(R.id.viewpager);
+        pageadapter = new PageAdapter(getSupportFragmentManager(),tab.getTabCount());
+        viewPager.setAdapter(pageadapter);
+
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tab));
+        tab.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+        //ref = FirebaseDatabase.getInstance().getReference();
+       // user = mAuth.getCurrentUser();
+
+       /* assert  user!=null;
         String uid = user.getUid();
         ref.child("users").child(uid).addValueEventListener(new ValueEventListener() {
             @Override
@@ -116,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Uri uri = Uri.parse(photo1);
 
-
+*/
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
